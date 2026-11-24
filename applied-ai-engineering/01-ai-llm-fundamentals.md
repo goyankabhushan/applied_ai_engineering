@@ -1,562 +1,317 @@
 # 01. AI & LLM Fundamentals
-## 1.1 Artificial Intelligence (AI)
 
-Artificial Intelligence (AI) is a field of computer science focused on building systems capable of performing tasks that typically require human intelligence.
+This module introduces the core concepts behind modern AI systems and Large Language Models (LLMs).
 
-These tasks include:
-- Understanding human language.
-- Recognizing images and objects.
-- Learning from information.
-- Making predictions and decisions.
-- Solving problems.
-- Generating new content.
+**Objective:** Understand how LLMs work, their capabilities and limitations, and the terminology needed to build AI-powered applications.
 
-**Examples:**
-- Voice assistants.
-- Facial recognition.
-- Recommendation systems.
-- Self-driving vehicles.
-- ChatGPT.
+## Contents
 
-AI is the broad field under which Machine Learning, Deep Learning and Generative AI are commonly studied.
+1. [Artificial Intelligence, Machine Learning and Deep Learning](#1-artificial-intelligence-machine-learning-and-deep-learning)
+2. [Large Language Models](#2-large-language-models)
+3. [Transformer Architecture](#3-transformer-architecture)
+4. [Tokens, Tokenization and Context Windows](#4-tokens-tokenization-and-context-windows)
+5. [Training and Inference](#5-training-and-inference)
+6. [Hallucinations and LLM Limitations](#6-hallucinations-and-llm-limitations)
+7. [Foundation Models and Model Configuration](#7-foundation-models-and-model-configuration)
+8. [Multimodal AI](#8-multimodal-ai)
+9. [Open-Weight vs Closed-Source Models](#9-open-weight-vs-closed-source-models)
 
 ---
+
+# 1. Artificial Intelligence, Machine Learning and Deep Learning
+
+## 1.1 Artificial Intelligence (AI)
+
+Artificial Intelligence is a field of computer science focused on building systems capable of performing tasks that typically require human intelligence.
+
+Examples include:
+
+- Understanding language.
+- Recognizing images.
+- Making predictions.
+- Solving problems.
+- Generating content.
+- Making decisions.
+
+AI is the broader field that includes Machine Learning, Deep Learning and Generative AI.
 
 ## 1.2 Machine Learning (ML)
 
-Machine Learning is a subset of AI in which systems learn patterns from data and use those patterns to make predictions or decisions without requiring every rule to be explicitly programmed.
+Machine Learning is a subset of AI in which systems learn patterns from data to make predictions or decisions without requiring every rule to be explicitly programmed.
 
-### Traditional Programming vs Machine Learning
+**Traditional programming:**
 
-**Traditional Programming:**
-
-A developer writes rules that determine how the system behaves.
-
+```text
 Input + Rules → Output
-
-Example: A program marks an email as spam when it contains predefined suspicious words.
+```
 
 **Machine Learning:**
 
-An algorithm learns patterns from training data and produces a trained model.
-
+```text
 Training Data + Learning Algorithm → Trained Model
+```
 
-The trained model can then process new inputs and generate predictions.
+Common types:
 
-### How Machine Learning Works
-
-1. Collect relevant data.
-2. Prepare and clean the data.
-3. Select a suitable ML algorithm.
-4. Train the model using the data.
-5. Evaluate its performance.
-6. Use the trained model to make predictions.
-
-### Types of Machine Learning
-
-**1. Supervised Learning**
-
-The model learns from labelled examples.
-
-Examples:
-- Spam email classification.
-- House price prediction.
-- Fraud detection.
-
-**2. Unsupervised Learning**
-
-The model discovers patterns or groups in data without predefined labels.
-
-Examples:
-- Customer segmentation.
-- Grouping similar documents.
-- Anomaly detection.
-
-**3. Reinforcement Learning**
-
-An agent learns through interactions with an environment, receiving rewards or penalties for its actions.
-
-Examples:
-- Game-playing systems.
-- Robotics.
-- Some AI model training techniques.
-
----
+| Type | How it works | Example |
+|---|---|---|
+| Supervised Learning | Learns from labelled examples | Spam detection |
+| Unsupervised Learning | Finds patterns without predefined labels | Customer segmentation |
+| Reinforcement Learning | Learns through actions and rewards | Game-playing agents |
 
 ## 1.3 Deep Learning (DL)
 
-Deep Learning is a subset of Machine Learning that uses artificial neural networks with multiple layers to learn complex patterns from data.
+Deep Learning is a subset of Machine Learning that uses neural networks with multiple layers to learn complex patterns.
 
-### What is a Neural Network?
+A neural network typically contains:
 
-A neural network is a computational model loosely inspired by the structure of biological neural networks.
+- Input layer: Receives data.
+- Hidden layers: Process information.
+- Output layer: Produces predictions.
+- Weights and biases: Learned numerical parameters.
+- Activation functions: Introduce non-linearity.
 
-It consists of interconnected computational units called neurons.
-
-Its main components include:
-
-- Input Layer: Receives input data.
-- Hidden Layers: Process information and learn patterns.
-- Output Layer: Produces the final result.
-- Weights and Biases: Parameters adjusted during training.
-- Activation Functions: Introduce non-linearity into the network.
-
-### Conceptual Architecture
-
-Input Layer → Hidden Layers → Output Layer
-
-### Why Deep Learning?
-
-Traditional ML often depends on manually designed features.
-
-Deep Learning can automatically learn useful representations from large amounts of data.
-
-### Applications
-
-- Image recognition.
-- Speech recognition.
-- Natural Language Processing (NLP).
-- Computer vision.
-- Large Language Models (LLMs).
-- Image and video generation.
-
-Modern LLMs are predominantly built using Deep Learning.
-
----
+Deep Learning is used in image recognition, speech processing, computer vision and modern LLMs.
 
 ## 1.4 Generative AI (GenAI)
 
-Generative AI refers to AI systems capable of generating new content based on patterns learned from training data.
+Generative AI refers to AI systems that generate new content based on patterns learned from training data.
 
-Unlike systems designed primarily to classify or predict, generative models can produce new outputs.
-
-### Types of Generated Content
-
-| Type | Examples |
+| Modality | Examples |
 |---|---|
 | Text | ChatGPT, Claude |
-| Images | DALL-E, Stable Diffusion |
+| Images | Image generation models |
 | Audio | Speech and music generation |
-| Video | AI-generated videos |
+| Video | AI-generated video |
 | Code | Code generation and completion |
 
-### How Generative AI Works (High Level)
-
-1. A model is trained on large amounts of data.
-2. It learns patterns and representations from that data.
-3. A user provides an input or prompt.
-4. The model generates an output based on the learned patterns and the input.
-
-### Common Applications
-
-- AI chatbots.
-- Document summarization.
-- Content generation.
-- Code assistants.
-- Question answering.
-- Information extraction.
-- Conversational applications.
-
----
+Common applications include chatbots, document summarization, content generation, information extraction and code assistants.
 
 ## 1.5 Relationship Between AI, ML, DL and GenAI
 
-These terms are related but do not mean the same thing.
+```text
+Artificial Intelligence
+        |
+        +-- Machine Learning
+                |
+                +-- Deep Learning
+                        |
+                        +-- Many modern LLMs
 
-Conceptual hierarchy:
+Generative AI is a category of AI systems
+that generate new content.
+```
 
-- Artificial Intelligence: The broader field.
-  - Machine Learning: Systems learning patterns from data.
-    - Deep Learning: Machine Learning using multi-layer neural networks.
-      - Modern LLMs: Deep learning models for language tasks.
+Modern generative AI predominantly uses Deep Learning, although not every generative AI technique must use it.
 
-Generative AI is a broader category of AI systems that generate content. Modern generative AI predominantly uses Deep Learning, although not every generative AI technique must be deep learning.
+## 1.6 Traditional Predictive AI vs Generative AI
 
----
-
-## 1.6 Traditional AI vs Generative AI
-
-| Traditional Predictive AI | Generative AI |
+| Predictive AI | Generative AI |
 |---|---|
 | Classifies spam emails | Writes emails |
 | Predicts customer churn | Generates customer reports |
-| Detects fraudulent transactions | Explains suspicious activity |
-| Recommends products | Creates conversational shopping assistants |
-| Detects manufacturing defects | Generates defect analysis reports |
+| Detects fraud | Explains suspicious activity |
+| Recommends products | Creates conversational assistants |
 
-Both approaches can be combined in the same application.
-
----
+Both approaches can be combined in one application.
 
 ## 1.7 Relevance to AI Engineering
-
-As an AI-enabled Software Engineer, understanding these differences helps determine which technology is appropriate for a particular problem.
-
-Examples:
 
 | Requirement | Relevant Technology |
 |---|---|
 | Detect fraudulent transactions | Machine Learning |
 | Recognize objects in images | Deep Learning |
-| Generate a report from user input | Generative AI |
+| Generate reports | Generative AI |
 | Answer questions about company documents | LLM + RAG |
-| Execute application operations using natural language | LLM + Tool Calling |
-| Perform multi-step tasks autonomously | AI Agents |
+| Execute operations using natural language | LLM + Tool Calling |
+| Perform multi-step tasks | AI Agents |
 
-Our primary focus is on Generative AI, LLMs and the engineering techniques used to integrate them into software applications.
-
----
-
-## Key Takeaways
-
-1. AI is the broader field of building intelligent systems.
-2. Machine Learning enables systems to learn patterns from data.
-3. Deep Learning uses multi-layer neural networks.
-4. Generative AI creates new content.
-5. Modern LLMs predominantly use Deep Learning.
-6. AI engineering focuses on applying these capabilities to real-world software products.
+Our focus is on Generative AI, LLMs and the engineering techniques used to integrate them into software applications.
 
 ---
 
-## Interview Questions
+# 2. Large Language Models
 
-**Q1. What is the difference between AI and Machine Learning?**
+## 2.1 What Is an LLM?
 
-AI is the broader field of building intelligent systems. Machine Learning is a subset of AI where systems learn patterns from data.
-
-**Q2. What is Deep Learning?**
-
-Deep Learning is a subset of Machine Learning that uses multi-layer neural networks to learn complex patterns.
-
-**Q3. What is Generative AI?**
-
-Generative AI refers to systems that generate new content such as text, images, audio, video or code based on learned patterns.
-
-**Q4. Are all AI systems Generative AI?**
-
-No. AI also includes predictive, classification, recommendation and rule-based systems.
-
-**Q5. Are LLMs based on Machine Learning or Deep Learning?**
-
-Modern LLMs are based predominantly on Deep Learning, which is a subset of Machine Learning.
-
----
-
-# 2. Large Language Models (LLMs)
-
-## 2.1 What is an LLM?
-
-A Large Language Model (LLM) is a type of Deep Learning model trained on large amounts of text and other data to understand and generate human-like language.
+A Large Language Model (LLM) is a Deep Learning model trained on large amounts of data to process and generate language.
 
 LLMs can perform tasks such as:
 
 - Answering questions.
-- Generating text.
+- Generating text and code.
 - Summarizing documents.
 - Translating languages.
-- Generating code.
 - Extracting information.
 - Following instructions.
-- Reasoning through certain problems.
+- Performing certain reasoning tasks.
 
-**Examples:**
-- OpenAI GPT models.
-- Anthropic Claude models.
-- Google Gemini models.
-- Meta Llama models.
-- Qwen models.
+Examples include GPT, Claude, Gemini, Llama and Qwen model families.
 
 LLMs are a major category of Generative AI.
 
----
+## 2.2 What Is a Language Model?
 
-## 2.2 Why are LLMs called Large Language Models?
-
-Each word has a specific meaning:
-
-**Large:** These models are trained using substantial datasets and generally contain large numbers of learnable parameters.
-
-**Language:** They are designed primarily to process and generate language, although modern models can also work with images, audio and other modalities.
-
-**Model:** A trained computational system that learns patterns from data and uses those learned patterns to generate outputs.
-
----
-
-## 2.3 What is a Language Model?
-
-A Language Model learns statistical patterns in language and estimates the probability of possible next tokens based on preceding context.
+A language model learns patterns in language and estimates the probability of possible next tokens based on preceding context.
 
 For example:
 
-Input: "The sun rises in the..."
+```text
+The sun rises in the ...
+```
 
-Possible predictions:
+Possible next tokens might include:
+
 - East
 - West
-- North
+- Morning
 
-The model assigns probabilities to possible next tokens based on its learned patterns and the available context.
+Conceptually:
 
-A language model can be represented conceptually as:
+\[
+P(\text{next token} \mid \text{previous tokens})
+\]
 
-P(next token | previous tokens)
+Modern autoregressive LLMs use this next-token prediction process to generate text.
 
-This means predicting the next token based on the tokens already provided.
+## 2.3 How Does an LLM Generate Text?
 
-Modern LLMs use much more sophisticated neural network architectures to perform this task.
+Most commonly used text-generating LLMs generate output autoregressively, one token at a time.
 
----
+```text
+Prompt
+  |
+  v
+Tokenization
+  |
+  v
+Model Processing
+  |
+  v
+Predict Next Token
+  |
+  v
+Append Token to Context
+  |
+  v
+Repeat Until Generation Stops
+```
 
-## 2.4 How Does an LLM Generate Text?
+For example:
 
-Modern autoregressive LLMs generally generate text one token at a time.
+```text
+Input: "Artificial Intelligence"
 
-Consider the prompt:
+Generated:
+"Artificial Intelligence is changing technology."
+```
 
-"Artificial Intelligence is"
+The model repeatedly predicts and generates tokens until it reaches a stopping condition.
 
-A simplified generation process:
-
-1. The model receives the input.
-2. The input is converted into tokens.
-3. The model processes the tokens.
-4. It calculates probabilities for possible next tokens.
-5. A token is selected according to the decoding strategy.
-6. The selected token is added to the context.
-7. The process repeats until generation stops.
-
-Example:
-
-Prompt: "Artificial Intelligence is"
-
-Possible generated sequence:
-
-"Artificial" → "Intelligence" → "is" → "changing" → "technology".
-
-The model does not necessarily generate complete sentences in one operation. It repeatedly predicts and generates tokens.
-
-**Important:** This is a simplified explanation of autoregressive text generation. Not every generative model uses this exact process.
-
----
-
-## 2.5 What are Parameters in an LLM?
+## 2.4 What Are Model Parameters?
 
 Parameters are numerical values learned during model training.
 
-They determine how the neural network processes information and produces predictions.
+They influence how the neural network processes information and generates predictions.
 
-Think of parameters as the learned internal values that define the model's behavior.
+Model size is often described by its parameter count.
 
-For example:
-
-- GPT models have learned parameters.
-- Claude models have learned parameters.
-- Llama models have learned parameters.
-
-More parameters do not automatically mean a better model.
+However, more parameters do not automatically mean a better model.
 
 Performance also depends on:
+
 - Training data quality.
 - Model architecture.
 - Training methods.
-- Data diversity.
 - Post-training and alignment.
 - Inference configuration.
 
-Parameters are different from model settings such as temperature and top-p, which influence generation behavior.
+Model parameters are different from API settings such as temperature and top-p.
 
----
+## 2.5 What Is an LLM Trained On?
 
-## 2.6 What is an LLM Training Dataset?
+Depending on the model, training data may include:
 
-LLMs learn from large collections of training data.
-
-Depending on the model, this data can include:
-
-- Books.
-- Articles.
+- Books and articles.
 - Websites.
 - Documentation.
 - Source code.
-- Other licensed or curated datasets.
+- Licensed and curated datasets.
 
-The training process helps the model learn language structure, relationships, patterns and information.
+Training helps the model learn language structure, patterns, relationships and information.
 
-**Important:** Training data and the model's learned parameters are not the same thing. The trained model does not simply work like a searchable copy of its training documents.
+The trained model is not simply a searchable copy of its training documents.
 
----
+## 2.6 What Can LLMs Do?
 
-## 2.7 What Can LLMs Do?
-
-### Language Understanding
-- Understand user questions.
-- Identify intent.
-- Extract relevant information.
-- Classify text.
-
-### Content Generation
-- Write emails.
-- Generate reports.
-- Summarize documents.
-- Generate code.
-
-### Reasoning and Problem Solving
-- Solve certain mathematical problems.
-- Compare alternatives.
-- Follow multi-step instructions.
-- Analyze information.
-
-### Information Processing
-- Extract structured information.
-- Convert unstructured text into JSON.
-- Identify entities.
-- Categorize documents.
-
-### Multimodal Tasks
-- Understand images.
-- Process audio.
-- Transcribe speech.
-- Work with video in supported models.
-
----
-
-## 2.8 LLM vs Traditional Machine Learning Models
-
-| Traditional ML Model | Large Language Model |
+| Capability | Example |
 |---|---|
-| Often designed for a specific task | Can perform many language tasks |
-| Usually requires task-specific training or configuration | Can follow different instructions through prompts |
-| Commonly produces classifications or predictions | Can generate flexible text responses |
-| Often uses structured input features | Can process tokenized language and other modalities |
-| Usually narrower in scope | More general-purpose |
+| Language understanding | Identify user intent |
+| Content generation | Write emails and reports |
+| Summarization | Summarize long documents |
+| Information extraction | Extract invoice details |
+| Classification | Categorize customer messages |
+| Code generation | Generate code snippets |
+| Multimodal understanding | Analyze images in supported models |
 
-An important distinction: LLMs are themselves Machine Learning models. They are not separate from ML.
+LLMs can perform multiple tasks through instructions rather than requiring a separate model for every task.
 
-Traditional ML models can also be general-purpose, and LLMs can be adapted for specific tasks.
+## 2.7 LLM vs Traditional ML vs Chatbot
 
----
+**LLM vs Traditional ML**
 
-## 2.9 LLM vs Chatbot
+An LLM is itself a Machine Learning model, specifically a Deep Learning model.
 
-These terms are not interchangeable.
+Traditional ML models are often designed for narrower prediction or classification tasks, while LLMs support a wider range of language tasks.
 
-**LLM:** The underlying AI model that processes input and generates output.
+**LLM vs Chatbot**
 
-**Chatbot:** An application or interface that allows users to interact conversationally with a system.
+- LLM: The underlying model that processes input and generates output.
+- Chatbot: An application that allows users to interact conversationally.
 
-A chatbot may use:
-- An LLM.
-- Conversation history.
-- System instructions.
-- External APIs.
-- Databases.
-- Tool calling.
-- Business logic.
+A chatbot may use an LLM, conversation history, databases, APIs, business logic and tool calling.
 
-For example, ChatGPT is an AI-powered product, while GPT models are the underlying models used by OpenAI products.
+A chatbot can also operate using traditional predefined rules.
 
-A chatbot does not necessarily require an LLM. Traditional chatbots can also use predefined rules.
+## 2.8 How Developers Use LLMs
 
----
+Most application developers use existing LLMs rather than training their own models.
 
-## 2.10 How Developers Use LLMs
+```text
+User
+ |
+ v
+Application
+ |
+ v
+LLM API
+ |
+ v
+Model Inference
+ |
+ v
+Response
+ |
+ v
+Application
+ |
+ v
+User
+```
 
-Developers generally integrate existing LLMs rather than train their own models.
+The application handles:
 
-A simplified architecture:
-
-User → Application → LLM API → Model → Response → Application → User
-
-The application is responsible for:
 - Preparing prompts.
 - Managing conversation history.
 - Sending API requests.
-- Handling responses.
+- Processing responses.
 - Validating outputs.
 - Executing application logic.
-- Managing errors and security.
 
-We will explore this architecture in Module 02: Working with AI APIs.
-
----
-
-## 2.11 Limitations of LLMs
-
-LLMs are powerful but have important limitations.
-
-**1. Hallucinations**
-
-They can generate incorrect information while sounding confident.
-
-**2. Knowledge Limitations**
-
-Their learned knowledge may not include recent or private information.
-
-**3. Context Limitations**
-
-They have finite context windows.
-
-**4. Non-deterministic Outputs**
-
-The same prompt can produce different responses depending on generation settings and model behavior.
-
-**5. Limited Reliability**
-
-They may misunderstand instructions or fail at complex tasks.
-
-**6. Security Risks**
-
-They can be manipulated through prompt injection or unsafe tool instructions.
-
-**7. Cost and Latency**
-
-API calls consume resources and can introduce response delays.
-
-We will study these limitations in detail in later lessons.
+We will implement this workflow in Module 2.
 
 ---
 
-## Key Takeaways
-
-1. An LLM is a Deep Learning model trained to process and generate language.
-2. Language models predict possible next tokens based on previous context.
-3. Modern autoregressive LLMs generate text token by token.
-4. Parameters are learned numerical values inside the model.
-5. LLMs can perform many tasks through instructions and prompts.
-6. An LLM is not the same thing as a chatbot.
-7. Developers typically integrate existing LLMs through APIs rather than training their own models.
-8. LLMs have limitations including hallucinations, context limits, security risks and latency.
-
----
-
-## Interview Questions
-
-**Q1. What is an LLM?**
-
-An LLM is a Deep Learning model trained on large amounts of data to understand and generate language.
-
-**Q2. How does an LLM generate text?**
-
-Modern autoregressive LLMs predict the probability of the next token based on preceding context and repeatedly generate tokens until completion.
-
-**Q3. What are parameters in an LLM?**
-
-Parameters are learned numerical values inside the neural network that influence how it processes inputs and generates outputs.
-
-**Q4. Is ChatGPT an LLM?**
-
-ChatGPT is an AI-powered application. GPT models are the underlying language models used by OpenAI.
-
-**Q5. Is an LLM the same as traditional Machine Learning?**
-
-An LLM is itself a Machine Learning model, specifically a Deep Learning model designed for language-related tasks.
-
-**Q6. Do developers need to train their own LLMs?**
-
-No. Most developers use existing models through APIs or deploy existing open-source models.
-
----
 # 3. Transformer Architecture
 
 ## 3.1 What Is a Transformer?
@@ -565,37 +320,25 @@ A Transformer is a neural network architecture designed to process sequences of 
 
 It was introduced in the 2017 research paper *Attention Is All You Need*.
 
-Before Transformers, many language models relied on architectures such as RNNs (Recurrent Neural Networks) and LSTMs (Long Short-Term Memory networks).
+Transformers use an attention mechanism to capture relationships between different tokens.
 
-These architectures processed text sequentially, making it harder to parallelize training and capture relationships between distant words.
-
-Transformers introduced **self-attention**, allowing a model to understand relationships between different tokens in a sequence.
-
-Today, Transformers power most modern LLMs.
+They power most modern LLMs.
 
 ## 3.2 Why Do We Need Attention?
 
-Consider this sentence:
+Consider:
 
-> The animal didn't cross the road because it was tired.
+```text
+The animal didn't cross the road because it was tired.
+```
 
-To understand the sentence, the model needs to understand what "it" refers to.
+To understand the sentence, a model needs to identify what "it" refers to.
 
-Now consider:
+Attention helps the model determine which other tokens are relevant when processing a particular token.
 
-> The animal didn't cross the road because it was busy.
-
-The context changes the likely meaning.
-
-A language model must understand relationships between words, not just process each word independently.
-
-Attention helps the model determine which other tokens are important when interpreting a particular token.
-
-**In simple terms:** Attention allows a model to focus on relevant parts of the input while processing a token.
+In simple terms, attention allows a model to focus on relevant parts of the input.
 
 ## 3.3 High-Level Transformer Architecture
-
-A Transformer processes input through multiple stages.
 
 ```text
 Input Text
@@ -612,54 +355,37 @@ Positional Information
     v
 Transformer Layers
     |
-    |-- Self-Attention
+    +-- Self-Attention
     |
-    |-- Feed-Forward Network
+    +-- Feed-Forward Network
     |
     v
 Output Layer
     |
     v
 Next Token Probabilities
-    |
-    v
-Generated Text
 ```
 
-Let's understand each component.
-
-## 3.4 Tokenization and Embeddings
+## 3.4 Token Embeddings
 
 Before a Transformer processes text, the input is converted into tokens.
+
+Each token is converted into a numerical vector called an embedding.
 
 For example:
 
 ```text
-Input: "AI is transforming software"
-
-Tokens:
-["AI", " is", " transforming", " software"]
+"AI"       → [0.21, 0.45, 0.12, ...]
+"software" → [0.32, 0.18, 0.67, ...]
 ```
 
-Each token is converted into a numerical representation called an **embedding**.
+These values are illustrative.
 
-An embedding is a vector of numbers representing a token in a mathematical space.
-
-For example, a simplified representation might look like:
-
-```text
-"AI"          -> [0.21, 0.45, 0.12, ...]
-"software"    -> [0.32, 0.18, 0.67, ...]
-"transforming"-> [0.51, 0.29, 0.41, ...]
-```
-
-These are illustrative values, not actual model embeddings.
-
-Embeddings allow the model to work with numerical representations rather than raw text.
+Embeddings allow the model to process numerical representations instead of raw text.
 
 ## 3.5 Positional Information
 
-Transformers process tokens using attention, but they also need information about token order.
+Transformers need information about token order.
 
 Consider:
 
@@ -668,100 +394,61 @@ The dog chased the cat.
 The cat chased the dog.
 ```
 
-Both sentences contain the same words, but their meanings are different.
+The words are similar, but their meanings are different.
 
-Positional information helps the model understand where each token appears in the sequence.
+Positional information helps the model understand where tokens appear in a sequence.
 
-It is combined with token representations before they enter the Transformer layers.
+Common techniques include:
 
-Modern Transformer models may use different positional encoding techniques, including:
-
-- Sinusoidal positional encoding
-- Learned positional embeddings
-- Rotary Position Embeddings (RoPE)
-
-You don't need to implement these techniques yet. Understand their purpose: **preserving information about token positions.**
+- Sinusoidal positional encoding.
+- Learned positional embeddings.
+- Rotary Position Embeddings (RoPE).
 
 ## 3.6 Self-Attention
 
-Self-attention is one of the most important concepts in Transformer architecture.
+Self-attention allows each token to consider other relevant tokens in the input.
 
-It allows each token to consider other relevant tokens in the input sequence.
+It uses three important representations:
 
-For example:
-
-```text
-The developer built an application because they needed it.
-```
-
-When processing "they", the model can use attention to identify relevant contextual information, such as "developer".
-
-Self-attention uses three important representations:
-
-| Component | Meaning |
+| Component | Purpose |
 |---|---|
-| Query (Q) | What information is this token looking for? |
-| Key (K) | What information does another token represent? |
-| Value (V) | What information can another token contribute? |
-
-Think of it like searching through information:
-
-- Query: What am I looking for?
-- Key: What does each available item contain?
-- Value: What information should I retrieve?
+| Query (Q) | Represents what information a token is looking for |
+| Key (K) | Represents information used to determine relevance |
+| Value (V) | Contains information that can be combined |
 
 The model compares queries with keys to calculate attention scores.
 
-These scores determine how much information to take from each token's value.
+These scores determine how much information is taken from each token's value.
 
-The result is a context-aware representation of each token.
-
-**Important:** Query, Key, and Value are learned mathematical projections of token representations. They are not separate pieces of text or database fields.
+**Important:** Query, Key and Value are learned mathematical projections of token representations, not separate pieces of text.
 
 ## 3.7 Multi-Head Attention
 
-A sentence can contain several types of relationships.
+Multi-head attention performs multiple attention operations in parallel.
 
-For example:
-
-> The engineer deployed the application after testing it.
-
-The model may need to understand:
-
-- Who performed the action?
-- What was deployed?
-- What does "it" refer to?
-- Which event happened first?
-
-Multi-head attention allows the model to use multiple attention mechanisms in parallel.
-
-Each attention head can learn to capture different patterns or relationships.
+Different heads can learn different relationships or patterns in the input.
 
 ```text
-             Input Representations
-                      |
-          +-----------+-----------+
-          |           |           |
-          v           v           v
-       Head 1      Head 2      Head 3
-          |           |           |
-          +-----------+-----------+
-                      |
-                      v
-                 Combined Output
+       Input Representations
+                 |
+       +---------+---------+
+       |         |         |
+       v         v         v
+     Head 1    Head 2    Head 3
+       |         |         |
+       +---------+---------+
+                 |
+                 v
+           Combined Output
 ```
 
-The outputs of these heads are combined and transformed before continuing through the network.
-
-You don't need to memorize the internal equations. Understand that multiple attention heads help the model capture different relationships simultaneously.
+This helps the model capture multiple types of relationships simultaneously.
 
 ## 3.8 Feed-Forward Network
 
-After attention, the Transformer applies a Feed-Forward Network (FFN).
+After attention, the Transformer applies a Feed-Forward Network (FFN) to further process token representations.
 
-Its job is to further process the information represented by each token.
-
-A simplified Transformer layer looks like:
+A simplified Transformer layer contains:
 
 ```text
 Input
@@ -776,236 +463,79 @@ Feed-Forward Network
 Output
 ```
 
-A real Transformer layer also includes residual connections and normalization.
+Real Transformer layers also use:
 
-### Residual Connections
-
-Residual connections allow information from earlier stages to bypass a transformation and be combined with its output.
-
-They help deep neural networks train more effectively.
-
-### Layer Normalization
-
-Layer normalization helps stabilize the values flowing through the network, supporting more reliable training.
-
-You mainly need to understand their purpose, not their mathematical implementation.
+- Residual connections: Help information flow through deep networks.
+- Layer normalization: Help stabilize network activations during training.
 
 ## 3.9 Stacking Transformer Layers
 
-A Transformer usually contains multiple layers.
+Transformers contain multiple layers.
 
-Each layer processes the representations produced by the previous layer.
+Each layer processes representations from the previous layer.
 
-```text
-Input Embeddings
-       |
-       v
-Transformer Layer 1
-       |
-       v
-Transformer Layer 2
-       |
-       v
-Transformer Layer 3
-       |
-       v
-      ...
-       |
-       v
-Transformer Layer N
-       |
-       v
-Output Representation
-```
-
-As information passes through these layers, the model builds increasingly sophisticated representations of the input.
-
-The number of layers, attention heads, and hidden dimensions depends on the model architecture.
+As information passes through the network, the model builds increasingly sophisticated contextual representations.
 
 ## 3.10 Encoder vs Decoder Architecture
 
-Transformers can be designed using three common architectural patterns.
+Transformers can follow three common architectural patterns.
 
-### Encoder-only
-
-The encoder processes input text and produces contextual representations.
-
-Commonly used for:
-
-- Text classification
-- Semantic understanding
-- Embedding generation
-
-Example: BERT.
-
-### Decoder-only
-
-The decoder generates text one token at a time using previously available tokens.
-
-Commonly used for:
-
-- Chatbots
-- Text generation
-- Code generation
-- General-purpose LLM applications
-
-Examples: GPT-style models.
-
-### Encoder-Decoder
-
-The encoder processes the input, while the decoder generates output using the encoded information.
-
-Commonly used for:
-
-- Translation
-- Summarization
-- Text-to-text tasks
-
-Example: T5.
-
-| Architecture | Primary purpose | Example |
+| Architecture | Purpose | Example |
 |---|---|---|
-| Encoder-only | Understand input | BERT |
-| Decoder-only | Generate output | GPT-style models |
+| Encoder-only | Understand and represent input | BERT |
+| Decoder-only | Generate output autoregressively | GPT-style models |
 | Encoder-Decoder | Transform input into output | T5 |
 
-For applied AI engineering, the most important architecture to understand is **decoder-only**, because it is widely used for generative LLM applications.
+For generative LLM applications, decoder-only architectures are particularly important.
 
 ## 3.11 Causal Self-Attention
 
 Decoder-only language models generally use causal self-attention.
 
-It prevents a token from accessing future tokens when predicting the next token.
+It prevents a token from accessing future tokens during generation.
 
-Consider:
+For example:
 
 ```text
 The developer is building an AI
 ```
 
-When predicting the next token after "AI", the model can use the tokens before it.
+When predicting the next token, the model can use the preceding tokens but cannot use tokens that have not yet been generated.
 
-During generation, it cannot use tokens that haven't been generated yet.
-
-This ensures that text is generated autoregressively, one token at a time.
-
-```text
-The
-The developer
-The developer is
-The developer is building
-The developer is building an
-The developer is building an AI
-```
-
-This is why decoder-only LLMs can generate coherent sequences without seeing the complete answer in advance.
+This supports autoregressive generation.
 
 ## 3.12 How a Prompt Flows Through a Transformer
 
-Let's connect everything.
+When an LLM receives a prompt:
 
-Suppose a user asks:
+1. The prompt is tokenized.
+2. Tokens are converted into embeddings.
+3. Positional information is incorporated.
+4. Transformer layers process the representations.
+5. The output layer produces scores called logits.
+6. The scores are converted into probabilities.
+7. A decoding strategy selects the next token.
+8. The process repeats until generation stops.
 
-```text
-Explain what an API is.
-```
+**What an Applied AI Engineer needs to know:** Understand attention, embeddings, positional information, Transformer layers, and autoregressive generation. You do not need to implement a Transformer from scratch.
 
-The process looks like this:
+---
 
-1. **Tokenization:** The text is split into tokens.
-2. **Embedding:** Each token is converted into a numerical vector.
-3. **Positional information:** The model receives information about token order.
-4. **Transformer layers:** Attention and feed-forward networks process the representations.
-5. **Output layer:** The final representation is converted into scores (logits) for possible next tokens.
-6. **Probability distribution:** The scores are converted into probabilities.
-7. **Token selection:** A decoding strategy selects the next token.
-8. **Repeat:** The selected token is added to the context, and the process repeats until generation stops.
-
-The generated tokens are then decoded into readable text.
-
-This connects directly to the autoregressive generation process discussed in Lesson 2.
-
-## 3.13 What Should an Applied AI Engineer Know?
-
-You do not need to build a Transformer from scratch to integrate AI into applications.
-
-You should understand:
-
-- What a Transformer is and why it is used.
-- What self-attention does.
-- The purpose of Query, Key, and Value.
-- Why multi-head attention exists.
-- Why embeddings and positional information are required.
-- The difference between encoder-only, decoder-only, and encoder-decoder models.
-- Why decoder-only models use causal attention.
-- How a prompt eventually produces next-token probabilities.
-
-These concepts help you understand model capabilities, limitations, context handling, and the behavior of LLM APIs.
-
-## Key Takeaways
-
-1. Transformers are the architecture behind most modern LLMs.
-2. Self-attention helps models understand relationships between tokens.
-3. Query, Key, and Value are fundamental components of attention.
-4. Multi-head attention captures different relationships in parallel.
-5. Embeddings convert tokens into numerical representations.
-6. Positional information helps models understand token order.
-7. Decoder-only Transformers are widely used for text generation.
-8. Causal attention prevents models from looking at future tokens during autoregressive generation.
-9. Transformer layers repeatedly process token representations to build contextual information.
-
-## Interview Questions
-
-**1. What is a Transformer?**
-
-A neural network architecture that uses attention mechanisms to process sequences and capture relationships between tokens.
-
-**2. Why were Transformers introduced?**
-
-They address limitations of sequential architectures such as RNNs, enable better parallelization during training, and use attention to capture relationships across sequences.
-
-**3. What is self-attention?**
-
-A mechanism that allows each token to evaluate the relevance of other tokens and incorporate their information into its representation.
-
-**4. What are Query, Key, and Value?**
-
-Learned representations used by attention to determine which information is relevant and how it should be combined.
-
-**5. What is multi-head attention?**
-
-A mechanism that runs multiple attention operations in parallel to capture different relationships.
-
-**6. Why do Transformers need positional information?**
-
-Because attention alone does not inherently encode the order of tokens.
-
-**7. What is the difference between encoder-only and decoder-only models?**
-
-Encoder-only models primarily build contextual representations of input, while decoder-only models generate output autoregressively.
-
-**8. What is causal attention?**
-
-A form of attention that prevents a token from accessing future tokens during autoregressively generation.
-
-**9. What happens inside a Transformer when an LLM receives a prompt?**
-
-The prompt is tokenized, embedded, enriched with positional information, processed through Transformer layers, and converted into next-token probabilities.
-
-# 4. Tokens, Tokenization & Context Windows
+# 4. Tokens, Tokenization and Context Windows
 
 ## 4.1 What Is a Token?
 
-A token is the basic unit of text that an LLM processes.
+A token is a basic unit of text processed by an LLM.
 
 A token can represent:
-- A complete word
-- Part of a word
-- A punctuation mark
-- A space combined with a word
-- A number or special character
 
-For example:
+- A complete word.
+- Part of a word.
+- Punctuation.
+- A space combined with a word.
+- Numbers or special characters.
+
+Example:
 
 ```text
 Input:
@@ -1015,17 +545,11 @@ Possible tokens:
 ["Artificial", " Intelligence", " is", " powerful", "."]
 ```
 
-The exact tokenization depends on the model and its tokenizer.
-
-**Important:** A token is not necessarily the same as a word.
-
-For example, a long or uncommon word may be split into multiple tokens.
+A token is not necessarily the same as a word.
 
 ## 4.2 What Is Tokenization?
 
-Tokenization is the process of converting text into tokens that a model can process.
-
-A simplified pipeline:
+Tokenization converts text into tokens and corresponding numerical token IDs.
 
 ```text
 Input Text
@@ -1034,362 +558,171 @@ Input Text
 Tokenizer
     |
     v
+Tokens
+    |
+    v
 Token IDs
     |
     v
 LLM
 ```
 
-The tokenizer converts text into token IDs, which are numerical identifiers from the model's vocabulary.
+Example:
+
+```text
+Text: "Hello world"
+
+Tokens: ["Hello", " world"]
+
+Token IDs: [15339, 1917]
+```
+
+The IDs are illustrative. Actual values depend on the tokenizer.
+
+Common tokenization approaches include:
+
+- Byte Pair Encoding (BPE).
+- WordPiece.
+- Unigram Language Model.
+
+Subword tokenization allows uncommon words to be represented using smaller units.
+
+## 4.3 Why Do Tokens Matter?
+
+Token counts affect:
+
+**API Cost:** Many providers charge based on input and output token usage.
+
+**Context Window:** Every token consumes part of the available context.
+
+**Response Length:** Output token limits control how much text can be generated.
+
+**Languages:** Different languages can require different token counts for similar amounts of text.
+
+## 4.4 What Is a Context Window?
+
+A context window is the maximum amount of token information a model can handle during a request and generation process.
+
+It may include:
+
+- System instructions.
+- Developer instructions.
+- User messages.
+- Conversation history.
+- Retrieved documents.
+- Tool results.
+- Generated output.
 
 Example:
 
 ```text
-Text:
-"Hello world"
+Context Window: 100,000 tokens
 
-Tokens:
-["Hello", " world"]
-
-Token IDs:
-[15339, 1917]
-```
-
-These IDs are illustrative. Actual IDs depend on the tokenizer.
-
-The model processes numerical representations of these tokens, not the original text directly.
-
-## 4.3 How Do Tokenizers Work?
-
-Most modern LLM tokenizers use subword tokenization techniques.
-
-Instead of requiring every possible word to exist in the vocabulary, they can split uncommon words into smaller units.
-
-Common approaches include:
-
-**Byte Pair Encoding (BPE)**
-
-- Starts with smaller units.
-- Repeatedly merges frequently occurring adjacent units.
-- Builds a vocabulary of commonly occurring token sequences.
-- Used by several popular LLM tokenizers.
-
-**WordPiece**
-
-- Builds subword units based on how well they help represent the training data.
-- Used by BERT-family models.
-
-**Unigram Language Model**
-
-- Starts with a larger vocabulary and selects a useful subset of subword units.
-- Used in SentencePiece-based tokenization approaches.
-
-You don't need to implement tokenizers. Understand that tokenization converts text into manageable units from a model-specific vocabulary.
-
-## 4.4 Why Does Tokenization Matter?
-
-Tokenization directly affects how AI applications behave and how much they cost.
-
-### API Cost
-
-Many AI APIs charge based on the number of input and output tokens.
-
-For example:
-
-```text
-Input tokens:  1,000
-Output tokens:   500
-Total tokens:  1,500
-```
-
-More tokens generally mean higher API usage costs.
-
-### Context Window Usage
-
-Every token consumes part of the model's available context window.
-
-Large prompts, conversation histories, and retrieved documents can consume many tokens.
-
-### Response Length
-
-Output token limits determine how much text a model can generate in a single response.
-
-### Multilingual Text
-
-Different languages can require different numbers of tokens for similar amounts of text.
-
-This can affect both cost and context usage.
-
-## 4.5 What Is a Context Window?
-
-A context window is the maximum amount of token information a model can consider during a single processing operation.
-
-It can include:
-
-- System instructions
-- Developer instructions
-- User messages
-- Conversation history
-- Retrieved documents
-- Tool results
-- Other information supplied to the model
-
-Example:
-
-```text
-Model Context Window: 100,000 tokens
-
-System Instructions:     2,000
-Conversation History:   15,000
-Retrieved Documents:    30,000
-Current User Prompt:     1,000
-Available Space:        52,000
+Instructions:          2,000
+Conversation History: 15,000
+Retrieved Documents:  30,000
+User Prompt:           1,000
+Reserved Output:       2,000
+Remaining Capacity:  50,000
 ```
 
 This is an illustrative example.
 
-The context window is a token limit, not a word limit.
+The context window is measured in tokens, not words.
 
-## 4.6 Context Window vs Memory
+## 4.5 Context Window vs Memory
 
-These concepts are different.
+These are different concepts.
 
-**Context Window**
+**Context Window:** Information supplied to the model for a particular request.
 
-The information available to the model during a particular request.
+**Memory:** Information stored separately and potentially retrieved for future interactions.
 
-**Memory**
+Example:
 
-Information stored separately and potentially retrieved for future interactions.
+A personal assistant stores a user's food preference in a database.
 
-For example, imagine a personal AI assistant.
+When the user asks for a meal plan, the application retrieves that preference and includes it in the prompt.
 
-A user previously said:
+The model uses that information because it is included in the current context, not because it automatically remembers every past conversation.
 
-> I prefer vegetarian food.
+## 4.6 What Happens When the Context Window Is Full?
 
-That preference might be stored in a database.
+Applications can manage context using:
 
-When the user later asks for a meal plan, the application can retrieve that preference and include it in the prompt.
+| Technique | Purpose |
+|---|---|
+| Truncation | Remove older or less relevant content |
+| Summarization | Replace long history with a shorter summary |
+| Retrieval | Fetch only relevant information |
+| Conversation Management | Retain important information separately |
 
-The model can then use it within its current context window.
-
-The model does not automatically remember every past conversation just because it has a large context window.
-
-## 4.7 What Happens When the Context Window Is Full?
-
-If the input exceeds the model's supported context limit, the request may fail or require the application to reduce the input.
-
-Common strategies include:
-
-**1. Truncation**
-
-Remove older or less important content.
-
-**2. Summarization**
-
-Replace a long conversation history with a shorter summary.
-
-**3. Retrieval**
-
-Fetch only the relevant information from a larger knowledge base.
-
-**4. Conversation Management**
-
-Maintain important information separately and include only what is needed for the current request.
-
-These strategies become especially important when building AI assistants and RAG applications.
-
-## 4.8 Context Window vs Maximum Output Tokens
-
-These are related but different limits.
+## 4.7 Context Window vs Maximum Output Tokens
 
 | Concept | Meaning |
 |---|---|
-| Context window | Maximum token capacity available for the request and generation |
-| Maximum output tokens | Maximum tokens the model can generate in its response |
+| Context Window | Overall token capacity available to the request and generation |
+| Maximum Output Tokens | Maximum tokens the model can generate in a response |
 
-For example:
+The exact limits and accounting behavior depend on the model and provider.
 
-```text
-Context Window:       100,000 tokens
-Input Tokens:          20,000 tokens
-Output Token Limit:     4,000 tokens
-```
-
-The model may have room in its context window for more input, but it cannot generate more than the configured output limit.
-
-Actual API behavior and limits depend on the model.
-
-## 4.9 What Is a Token Budget?
+## 4.8 What Is a Token Budget?
 
 A token budget is the amount of context or output space allocated to different parts of an AI request.
 
-For example, an application might allocate:
+Example:
 
 | Component | Token Budget |
 |---|---:|
-| System instructions | 1,000 |
-| Conversation history | 5,000 |
-| Retrieved documents | 8,000 |
-| Current user prompt | 1,000 |
-| Reserved output space | 2,000 |
+| Instructions | 1,000 |
+| Conversation History | 5,000 |
+| Retrieved Documents | 8,000 |
+| User Prompt | 1,000 |
+| Output Reservation | 2,000 |
 
-This helps developers control cost, context usage, and response length.
+Token budgeting helps control cost, context usage and response length.
 
-Token budgeting becomes particularly useful in RAG systems and AI agents, where multiple sources of information may be sent to a model.
+**Applied AI relevance:** Token management becomes especially important in RAG applications and AI agents, where prompts may contain conversation history, retrieved documents and tool results.
 
-## 4.10 Practical Example: Why Token Management Matters
+---
 
-Imagine building a customer support AI.
-
-A customer has a conversation containing 200 previous messages.
-
-Sending the entire conversation with every request may:
-
-- Increase API costs.
-- Consume context unnecessarily.
-- Make relevant information harder to prioritize.
-- Leave less space for retrieved knowledge and the response.
-
-A better approach:
-
-1. Keep recent messages.
-2. Summarize older conversations.
-3. Retrieve relevant customer information.
-4. Include only the necessary context.
-5. Reserve sufficient space for the response.
-
-This is an important part of practical AI engineering.
-
-## Key Takeaways
-
-1. Tokens are the units of text processed by LLMs.
-2. Tokenization converts text into token IDs.
-3. Tokens are not equivalent to words.
-4. Token counts affect API costs and context usage.
-5. A context window limits the information available during a model request.
-6. Context windows are not the same as persistent memory.
-7. Developers manage context through summarization, retrieval, truncation, and conversation management.
-8. Token budgets help control cost and response length.
-
-## Interview Questions
-
-**1. What is a token in an LLM?**
-
-A basic unit of text processed by a language model. It can represent a word, part of a word, punctuation, or another text unit.
-
-**2. What is tokenization?**
-
-The process of converting input text into tokens and corresponding numerical token IDs.
-
-**3. Why are tokens important when using AI APIs?**
-
-They affect API pricing, context window usage, and the amount of text a model can process or generate.
-
-**4. What is a context window?**
-
-The maximum amount of token information a model can handle within a particular request and generation process.
-
-**5. Is a context window the same as memory?**
-
-No. A context window holds information supplied to the model for a request. Memory is information stored separately and potentially retrieved for future requests.
-
-**6. How can developers manage large conversation histories?**
-
-Through summarization, truncation, retrieval, and selective conversation history management.
-
-**7. What is the difference between context window and maximum output tokens?**
-
-The context window limits the overall context capacity, while maximum output tokens limits the generated response length.
-
-**8. Why is token budgeting important?**
-
-It helps developers allocate context efficiently, control API costs, and reserve enough space for model responses.
-
-# 5. Training vs Inference
+# 5. Training and Inference
 
 ## 5.1 What Is Model Training?
 
-Training is the process through which a machine learning model learns patterns from data.
+Training is the process through which a model learns patterns from data by adjusting its internal parameters.
 
-For an LLM, training involves processing large amounts of text and adjusting its internal parameters to improve its ability to predict tokens.
-
-A simplified example:
+A simplified training process:
 
 ```text
 Training Data
      |
      v
-Tokenization
-     |
-     v
-LLM
-     |
-     v
-Prediction
-     |
-     v
-Compare with Expected Token
+Model Prediction
      |
      v
 Calculate Error (Loss)
      |
      v
-Update Model Parameters
+Update Parameters
      |
      v
 Repeat
 ```
 
-The model gradually adjusts its parameters to improve its predictions.
+For many LLMs, a major pre-training objective is predicting the next token.
 
-## 5.2 How Does an LLM Learn?
-
-Consider the sentence:
-
-```text
-The capital of France is _____
-```
-
-During training, the model learns to predict the next token based on the preceding context.
-
-It might initially predict an incorrect token.
-
-The training process calculates how far its prediction is from the expected token and adjusts the model's parameters.
-
-This process happens repeatedly across enormous amounts of training data.
-
-The model gradually learns statistical patterns, language structure, relationships, and other information represented in its training data.
-
-## 5.3 What Are Parameters?
-
-Parameters are numerical values inside a neural network that are adjusted during training.
-
-They determine how information is transformed as it passes through the model.
-
-For example:
-
-- A small model might contain billions of parameters.
-- A larger model might contain hundreds of billions of parameters.
-
-More parameters do not automatically mean a better model. Architecture, training data, training methods, and inference configuration also matter.
-
-## 5.4 Stages of LLM Training
-
-Modern LLM development generally involves multiple stages.
+## 5.2 Stages of LLM Training
 
 ### 1. Pre-training
 
 The model learns general patterns from a large dataset.
 
-A common objective is next-token prediction.
-
-The model develops broad language and knowledge capabilities.
+It develops broad language capabilities and knowledge representations.
 
 ### 2. Supervised Fine-Tuning (SFT)
 
-The pre-trained model is trained further using curated examples of desired behavior.
+The model is further trained using curated examples of desired behavior.
 
 Example:
 
@@ -1401,62 +734,24 @@ Expected Output:
 An API is an interface that allows software systems to communicate.
 ```
 
-This helps the model follow instructions and produce more useful responses.
+This helps the model follow instructions.
 
 ### 3. Alignment and Preference Optimization
 
-The model is further optimized to produce responses that better match human preferences and behavioral requirements.
+The model is further optimized to produce responses that better match desired behavior and human preferences.
 
-Methods include:
+Common techniques include:
 
-- RLHF (Reinforcement Learning from Human Feedback)
-- DPO (Direct Preference Optimization)
+- RLHF: Reinforcement Learning from Human Feedback.
+- DPO: Direct Preference Optimization.
 
-RLHF commonly uses human preference feedback and a reinforcement learning process.
+These are examples of alignment methods; not every model uses the same pipeline.
 
-DPO learns from preference comparisons using a different optimization approach.
-
-These are examples of alignment techniques; not every model uses the same pipeline.
-
-## 5.5 What Is Inference?
+## 5.3 What Is Inference?
 
 Inference is the process of using an already-trained model to generate predictions or responses.
 
-When you send a prompt to an LLM API, the model performs inference.
-
-Example:
-
-```text
-User Prompt
-     |
-     v
-Trained LLM
-     |
-     v
-Generate Next Token
-     |
-     v
-Generate More Tokens
-     |
-     v
-Final Response
-```
-
-Unlike training, ordinary inference does not update the model's learned parameters.
-
-## 5.6 Training vs Inference
-
-| Training | Inference |
-|---|---|
-| Model learns from data | Model generates predictions |
-| Updates model parameters | Normally keeps parameters fixed |
-| Requires training datasets | Requires input prompts or data |
-| Computationally expensive | Cost depends on model and usage |
-| Performed during model development or fine-tuning | Performed whenever an application uses the model |
-
-## 5.7 What Happens When You Call an AI API?
-
-Suppose an application calls an LLM API:
+When your application calls an LLM API, the model performs inference.
 
 ```text
 Application
@@ -1465,255 +760,100 @@ Application
 Send Prompt to AI API
     |
     v
-Model Performs Inference
+Trained Model
     |
     v
-Generate Response
+Inference
     |
     v
-Return Response to Application
+Generated Response
 ```
 
-The model provider has already trained the model.
+Normal inference does not update the model's learned parameters.
 
-Your application is using the trained model for inference.
+## 5.4 Training vs Inference
 
-This is the typical workflow for an Applied AI Engineer.
+| Training | Inference |
+|---|---|
+| Learns from data | Generates predictions |
+| Updates model parameters | Normally keeps parameters fixed |
+| Requires training data | Requires prompts or input data |
+| Computationally expensive | Cost depends on model and usage |
+| Used during model development | Used whenever an application calls the model |
 
-## 5.8 Can a Model Learn from My Prompts?
+## 5.5 What Is Fine-Tuning?
 
-Not automatically.
+Fine-tuning is additional training performed on an existing model using a specialized dataset.
 
-Sending a prompt to a model does not normally update its underlying parameters.
+It can help with:
 
-There are three different concepts to understand:
+- Domain-specific behavior.
+- Consistent response formats.
+- Specialized tasks.
+- Particular writing styles.
 
-**Inference:** The model processes your prompt and generates a response.
+Fine-tuning is not automatically the best way to provide frequently changing information to an LLM.
 
-**Memory or external storage:** An application stores information and retrieves it for future requests.
+For external or frequently updated knowledge, RAG is often more appropriate.
 
-**Fine-tuning:** The model's parameters are further trained using additional data.
+## 5.6 Training, Fine-Tuning, RAG and Memory
 
-These are different mechanisms and should not be confused.
+| Concept | Purpose |
+|---|---|
+| Pre-training | Develop general model capabilities |
+| Fine-tuning | Adapt model behavior through additional training |
+| RAG | Provide relevant external information during inference |
+| Memory | Store and retrieve information across interactions |
+| Inference | Use the model to generate a response |
 
-## 5.9 What Is Fine-Tuning?
+These mechanisms solve different problems.
 
-Fine-tuning is the process of taking an already-trained model and training it further on a specific dataset.
+**Applied AI relevance:** As an application developer, you will mostly work with inference, prompting, retrieval, tools and sometimes fine-tuning—not train foundation models from scratch.
 
-Example:
+---
 
-Imagine building an AI assistant for a financial services company.
-
-You might fine-tune a model using carefully prepared examples of financial customer support conversations.
-
-Fine-tuning can help with:
-
-- Domain-specific behavior
-- Consistent response formats
-- Specialized tasks
-- Particular writing styles
-- Repeated task patterns
-
-However, fine-tuning is not automatically the best way to provide an LLM with updated company information.
-
-For frequently changing information, RAG is often more appropriate.
-
-We will cover RAG in a later module.
-
-## 5.10 What Is Transfer Learning?
-
-Transfer learning means taking knowledge learned by a model during one training task and applying it to another task.
-
-Fine-tuning is one common way of using transfer learning.
-
-For example:
-
-A model trained on general language data can be further trained to perform a specialized task.
-
-## 5.11 What Should an Applied AI Engineer Know?
-
-You should understand:
-
-- What training and inference mean.
-- How pre-training works at a high level.
-- Why supervised fine-tuning is used.
-- What alignment means.
-- What model parameters are.
-- Why API usage is inference rather than training.
-- When fine-tuning might be useful.
-- Why external knowledge retrieval and fine-tuning solve different problems.
-
-## Key Takeaways
-
-1. Training teaches a model by adjusting its parameters.
-2. Inference uses an already-trained model to generate predictions.
-3. Pre-training develops general capabilities.
-4. Fine-tuning adapts an existing model to specific tasks or behaviors.
-5. RLHF and DPO are examples of alignment techniques.
-6. Calling an LLM API normally performs inference, not training.
-7. Memory, RAG, and fine-tuning are different approaches.
-
-## Interview Questions
-
-**1. What is the difference between training and inference?**
-
-Training adjusts model parameters using data. Inference uses the trained model to generate predictions without normally updating those parameters.
-
-**2. What is pre-training?**
-
-The initial training stage where a model learns general patterns from a large dataset.
-
-**3. What is fine-tuning?**
-
-Further training an existing model on specialized data to improve its behavior for particular tasks.
-
-**4. What is RLHF?**
-
-Reinforcement Learning from Human Feedback is an alignment technique that uses human preference feedback to help optimize model behavior.
-
-**5. Does an LLM learn every time we send a prompt?**
-
-No. Normal inference does not update the model's parameters.
-
-**6. When should you consider RAG instead of fine-tuning?**
-
-When an application needs to access external or frequently changing information without retraining the model.
-
-# 6. Hallucinations & LLM Limitations
+# 6. Hallucinations and LLM Limitations
 
 ## 6.1 What Is an LLM Hallucination?
 
-An LLM hallucination occurs when a model generates information that is incorrect, fabricated, or unsupported but presents it as if it were true.
+An LLM hallucination occurs when a model generates incorrect, fabricated or unsupported information while presenting it as if it were true.
 
 Example:
 
-User:
+A model invents a research paper title or provides an incorrect API function.
 
-```text
-Who invented the programming language Python?
-```
-
-Correct answer:
-
-```text
-Python was created by Guido van Rossum.
-```
-
-A hallucinating model might confidently provide an incorrect person's name.
-
-The problem is that the response can sound convincing even when it is wrong.
+The response may sound convincing even when it is wrong.
 
 ## 6.2 Why Do LLMs Hallucinate?
 
-LLMs generate responses based on patterns learned during training and the context provided during inference.
-
-They do not inherently verify every generated statement against a trusted source.
-
 Common reasons include:
 
-### 1. Missing Information
+- Missing information in the prompt.
+- Ambiguous instructions.
+- Outdated learned knowledge.
+- Incomplete or conflicting context.
+- Statistical text generation without inherent fact verification.
 
-The model may not have enough information to answer a question.
+An LLM is not automatically a database or fact-checking engine.
 
-Instead of acknowledging uncertainty, it may generate a plausible-sounding answer.
+## 6.3 Other LLM Limitations
 
-### 2. Ambiguous Prompts
-
-Unclear or incomplete instructions can lead to incorrect assumptions.
-
-### 3. Outdated Knowledge
-
-A model's training knowledge may not include recent developments.
-
-### 4. Weak or Conflicting Context
-
-If the prompt contains incomplete, irrelevant, or contradictory information, the model may produce unreliable responses.
-
-### 5. Statistical Generation
-
-An LLM predicts likely next tokens. It is not inherently a database or a fact-checking engine.
-
-This is one reason why fluent language does not guarantee factual correctness.
-
-## 6.3 Common Types of Hallucinations
-
-| Type | Example |
+| Limitation | Explanation |
 |---|---|
-| Factual hallucination | Giving an incorrect historical date |
-| Fabricated references | Inventing a research paper or URL |
-| Incorrect calculations | Producing an incorrect numerical result |
-| Unsupported claims | Claiming a document contains information it does not contain |
-| Coding hallucinations | Inventing a library function or API |
-| Contextual hallucination | Misinterpreting information provided by the user |
+| Knowledge limitations | May not know recent or private information |
+| Context limitations | Has a finite context window |
+| Reasoning errors | Can fail at complex logical or mathematical tasks |
+| Non-determinism | Responses may vary |
+| Bias | May reproduce biases in training data |
+| Lack of real-world access | Cannot automatically inspect external systems |
+| Security risks | Can be manipulated through prompt injection |
+| Cost and latency | Requests consume resources and take time |
 
-## 6.4 Other Limitations of LLMs
+## 6.4 How Can Developers Reduce Hallucinations?
 
-Hallucination is not the only limitation.
+### 1. Prompt Engineering
 
-### Knowledge Cutoff
-
-A model's internal knowledge may not include recent events or updated information.
-
-Applications can address this using web search, APIs, or retrieval systems.
-
-### Limited Context
-
-Models have a finite context window.
-
-They cannot process unlimited conversation history or documents in a single request.
-
-### Reasoning Errors
-
-Models can make mistakes in:
-
-- Complex logical problems
-- Multi-step calculations
-- Technical analysis
-- Long instructions
-- Edge cases in programming
-
-### Lack of Real-World Awareness
-
-An LLM does not automatically know the current state of external systems.
-
-For example, it cannot inherently know:
-
-- Your current bank balance
-- Today's stock price
-- The current status of an order
-- Whether a particular server is online
-
-The application must provide access to such information.
-
-### Non-deterministic Responses
-
-The same prompt can produce different responses depending on model configuration, sampling, and other factors.
-
-### Bias
-
-Models may reproduce biases present in their training data or introduced by other parts of the system.
-
-### Security Risks
-
-LLM applications can be vulnerable to:
-
-- Prompt injection
-- Data leakage
-- Unsafe tool execution
-- Insecure handling of user inputs
-- Excessive permissions
-
-These become especially important when building AI agents.
-
-## 6.5 How Can Developers Reduce Hallucinations?
-
-Hallucinations cannot be completely eliminated, but application design can reduce their frequency and impact.
-
-### 1. Better Prompting
-
-Give the model clear instructions.
-
-Example:
+Provide clear instructions and define how the model should handle missing information.
 
 ```text
 Answer only using the provided information.
@@ -1726,443 +866,203 @@ clearly state that you don't know.
 
 Retrieve relevant information from trusted sources and provide it to the model.
 
-Example:
-
 ```text
 User Question
      |
      v
-Search Relevant Documents
+Retrieve Relevant Documents
      |
      v
-Retrieve Supporting Information
-     |
-     v
-Send Context + Question to LLM
+Provide Context to LLM
      |
      v
 Generate Answer
 ```
 
-RAG can improve factual grounding, but it does not guarantee correctness.
+RAG improves factual grounding but does not guarantee correctness.
 
 ### 3. Tool Calling
 
-Allow the model to use external tools for tasks that require reliable data.
+Allow the model to use external tools when reliable data or operations are required.
 
 Examples:
 
-- Calculator for calculations
-- Database queries for customer information
-- Weather API for weather information
-- Search API for current information
+- Calculator for calculations.
+- Database queries for customer information.
+- Weather API for current weather.
+- Search API for current information.
 
 ### 4. Structured Outputs
 
-Use schemas to constrain the response format.
+Require the model to return information in a defined schema, such as JSON.
 
-For example, require the model to return a JSON object with specific fields.
-
-Structured output improves format reliability, but it does not guarantee that the values are factually correct.
+This improves format reliability but does not guarantee factual accuracy.
 
 ### 5. Validation
 
-Validate generated information before using it.
+Validate generated outputs using deterministic application logic.
 
 Examples:
 
-- Check whether a generated email address exists in your database.
-- Verify that a generated product ID is valid.
-- Check whether a requested operation is permitted.
-- Validate numerical calculations using deterministic code.
+- Verify product IDs against a database.
+- Validate email addresses.
+- Check permissions before executing an operation.
+- Recalculate important numerical results.
 
 ### 6. Human Review
 
-For high-impact decisions, use human approval or review instead of allowing an LLM to make decisions independently.
+Use human approval for high-impact or sensitive operations.
 
-## 6.6 RAG vs Fine-Tuning vs Prompting
+## 6.5 Prompting vs RAG vs Fine-Tuning vs Tool Calling
 
-These techniques solve different problems.
-
-| Technique | Primary purpose |
+| Technique | Purpose |
 |---|---|
-| Prompt Engineering | Guide model behavior |
-| RAG | Provide relevant external information |
-| Fine-Tuning | Adapt model behavior through additional training |
-| Tool Calling | Allow the model to interact with external systems |
-| Validation | Check generated outputs against rules or trusted data |
+| Prompting | Guide model behavior |
+| RAG | Provide external knowledge |
+| Fine-Tuning | Adapt model behavior |
+| Tool Calling | Interact with external systems |
+| Validation | Check outputs against rules |
 
-Example:
+**Applied AI relevance:** Never assume an LLM-generated response is correct just because it is well written. Design the application to validate important outputs and actions.
 
-Imagine building an AI assistant for an organization.
+---
 
-- Prompting defines how the assistant should behave.
-- RAG provides access to company documents.
-- Fine-tuning may help with specialized behavior.
-- Tool calling allows it to interact with company systems.
-- Validation checks whether actions and outputs are acceptable.
-
-## 6.7 What Should an Applied AI Engineer Know?
-
-You should be able to:
-
-- Explain why LLMs hallucinate.
-- Recognize situations where LLM output cannot be trusted.
-- Use retrieval to provide factual context.
-- Use external tools for reliable information.
-- Validate outputs before executing operations.
-- Apply permission checks and human approval where necessary.
-- Understand that structured output does not guarantee factual correctness.
-
-## Key Takeaways
-
-1. Hallucinations are incorrect or unsupported generated claims.
-2. Fluent responses are not necessarily factual.
-3. LLMs have limitations involving knowledge, reasoning, context, and security.
-4. Prompting can guide behavior but cannot guarantee correctness.
-5. RAG provides external information to ground responses.
-6. Tool calling enables access to real-world systems.
-7. Validation and human review are important safeguards.
-
-## Interview Questions
-
-**1. What is an LLM hallucination?**
-
-An incorrect or unsupported response generated by a language model and presented as if it were true.
-
-**2. Why do LLMs hallucinate?**
-
-They generate likely token sequences rather than inherently verifying every claim against trusted information.
-
-**3. How can hallucinations be reduced?**
-
-Through better prompts, RAG, tool calling, structured outputs, validation, and human review.
-
-**4. Does RAG eliminate hallucinations?**
-
-No. It provides relevant external context, but the model can still misunderstand or misuse that information.
-
-**5. Does structured output guarantee correctness?**
-
-No. It constrains the response format, not necessarily the factual accuracy of its contents.
-
-**6. What is prompt injection?**
-
-An attack where malicious instructions are introduced through input or retrieved content to manipulate an LLM's behavior.
-
-**7. Why should AI-generated actions be validated?**
-
-Because an LLM can generate incorrect or unsafe actions. Applications must enforce business rules, permissions, and validation independently.
-
-# 7. Foundation Models, Parameters & Configuration
+# 7. Foundation Models and Model Configuration
 
 ## 7.1 What Is a Foundation Model?
 
-A foundation model is a large model trained on broad datasets that can be adapted or used for many different tasks.
+A foundation model is a broadly trained model that can be used or adapted for multiple downstream tasks.
 
-Instead of building a separate model for every task, developers can use one foundation model for multiple applications.
+Examples of tasks:
 
-Examples of tasks include:
+- Text generation.
+- Summarization.
+- Translation.
+- Classification.
+- Question answering.
+- Code generation.
+- Image understanding.
 
-- Text generation
-- Summarization
-- Translation
-- Classification
-- Question answering
-- Code generation
-- Image understanding
+Examples of model families include GPT, Claude, Gemini, Llama and Qwen.
 
-Examples of foundation model families include GPT, Claude, Gemini, Llama, and Qwen.
-
-## 7.2 Foundation Model vs Traditional Task-Specific Model
+## 7.2 Foundation Model vs Task-Specific Model
 
 | Foundation Model | Task-Specific Model |
 |---|---|
-| General-purpose capabilities | Designed for a particular task |
-| Can support multiple applications | Usually has a narrower purpose |
-| Can be adapted for different tasks | Often requires retraining for major changes |
-| May be accessed through APIs or deployed directly | Often deployed for a specific workflow |
+| Broad capabilities | Designed for a particular task |
+| Can support multiple applications | Usually narrower in scope |
+| Can be adapted for different tasks | Often requires task-specific development |
 
-For example:
+## 7.3 Model Parameters vs API Parameters
 
-A general-purpose LLM can summarize documents, answer questions, and generate code.
+These terms are different.
 
-A traditional spam classifier may only classify messages as spam or not spam.
+**Model Parameters**
 
-## 7.3 What Is a Model Family?
+Learned numerical values inside a neural network. They are adjusted during training.
 
-A model family is a collection of related models developed by the same organization or research group.
+**API Parameters**
 
-Examples:
+Configuration values supplied by developers during inference.
 
-- GPT models from OpenAI
-- Claude models from Anthropic
-- Gemini models from Google
-- Llama models from Meta
-- Qwen models from Alibaba
+Common API settings include:
 
-Different models within the same family may have different:
+- Temperature.
+- Top-p.
+- Maximum output tokens.
+- Stop sequences.
+- Response format.
 
-- Sizes
-- Capabilities
-- Context windows
-- Speed
-- Pricing
-- Multimodal support
+Available settings vary by provider and model.
 
-Do not assume every model in a family supports the same features.
+## 7.4 Temperature
 
-## 7.4 Model Parameters vs API Parameters
-
-These are two different concepts.
-
-### Model Parameters
-
-Model parameters are learned numerical values inside a neural network.
-
-They are adjusted during training and determine how the model processes information.
-
-They are not normally modified by developers when making an API request.
-
-### API Parameters
-
-API parameters are configuration values developers provide when calling a model.
-
-They control aspects of how the model generates responses.
-
-Common examples include:
-
-- Temperature
-- Top-p
-- Maximum output tokens
-- Stop sequences
-- Response format
-
-The available settings depend on the provider and model.
-
-## 7.5 Temperature
-
-Temperature controls the randomness of token selection during generation.
+Temperature influences randomness during token selection.
 
 Generally:
 
-- Lower temperature produces more predictable outputs.
-- Higher temperature allows more variation.
-
-Example:
-
-Prompt:
-
-```text
-Suggest a name for a task management application.
-```
-
-Low temperature might produce:
-
-```text
-TaskFlow
-```
-
-Higher temperature might produce:
-
-```text
-MindGarden
-```
-
-These are illustrative outputs, not guaranteed results.
+- Lower temperature: More predictable responses.
+- Higher temperature: More varied responses.
 
 Typical use cases:
 
-| Temperature | Suitable Use Cases |
+| Temperature | Suitable Tasks |
 |---|---|
-| Low | Extraction, classification, structured responses |
-| Medium | General assistance and explanations |
-| Higher | Creative writing and brainstorming |
+| Low | Extraction and classification |
+| Medium | General assistance |
+| Higher | Creative generation |
 
 Temperature behavior and supported ranges vary by model.
 
-## 7.6 Top-p Sampling
+## 7.5 Top-p Sampling
 
-Top-p is also known as nucleus sampling.
+Top-p is also called nucleus sampling.
 
-It controls token selection by considering the smallest group of candidate tokens whose cumulative probability reaches a specified threshold.
+It restricts token selection to the smallest group of candidate tokens whose cumulative probability reaches a specified threshold.
 
-For example:
+For example, top-p of 0.9 considers a candidate group containing approximately 90% of the cumulative probability mass.
 
-If top-p is 0.9, the model considers a candidate set containing approximately 90% of the cumulative probability mass before sampling.
+Temperature and top-p influence generation differently. In practice, adjust one at a time when evaluating their effects.
 
-A simplified illustration:
+## 7.6 Maximum Output Tokens
 
-```text
-Candidate Tokens:
+Controls the maximum number of tokens the model can generate in a response.
 
-Token A: 50%
-Token B: 25%
-Token C: 15%
-Token D: 10%
+A low limit may produce incomplete answers.
 
-Top-p = 0.90
+A higher limit allows longer responses but can increase latency and cost.
 
-Considered candidates:
-A, B, C
-```
+## 7.7 Stop Sequences
 
-This is an illustrative example.
+Stop sequences are predefined strings or tokens that can tell a model to stop generating when encountered.
 
-Temperature and top-p both influence generation variability, but they work differently.
+Support depends on the model and API.
 
-In practice, you usually adjust one at a time to understand its effect.
+## 7.8 How Should You Choose a Model?
 
-## 7.7 Maximum Output Tokens
+Do not select a model only because it is the largest or most popular.
 
-This controls the maximum number of tokens the model can generate in a response.
-
-For example:
-
-```text
-Maximum Output Tokens: 500
-```
-
-The model cannot generate more than the configured limit for that response.
-
-A low limit may result in incomplete answers.
-
-A higher limit can allow longer responses, but may increase latency and cost.
-
-## 7.8 Stop Sequences
-
-Stop sequences are predefined strings or tokens that tell a model to stop generating when encountered.
-
-Example:
-
-```text
-Stop Sequence: <END>
-```
-
-If the model generates the specified stop sequence, generation stops.
-
-This can be useful for controlling output boundaries in certain text-generation workflows.
-
-Support varies across providers and APIs.
-
-## 7.9 Choosing a Model for an Application
-
-You should not select a model only because it is the largest or most popular.
-
-Evaluate models based on:
+Evaluate:
 
 | Factor | What to Consider |
 |---|---|
-| Accuracy | Does it solve the required task correctly? |
+| Accuracy | Does it solve the task correctly? |
 | Latency | How quickly does it respond? |
-| Cost | What is the input and output pricing? |
-| Context Window | Can it handle the required input? |
+| Cost | What are input and output costs? |
+| Context Window | Can it handle the required information? |
 | Reliability | Does it behave consistently? |
-| Multimodal Support | Does it support images, audio, or video as needed? |
-| Tool Calling | Can it interact with application tools? |
-| Privacy | Does its data handling meet application requirements? |
+| Capabilities | Does it support tools, images or audio as needed? |
+| Privacy | Does its data handling meet requirements? |
 
-A smaller model may be sufficient for simple classification or extraction tasks, while a more capable model may be needed for complex reasoning.
+A smaller model may be sufficient for classification or extraction, while a more capable model may be needed for complex reasoning.
 
-## 7.10 Model Selection in Real Applications
-
-Imagine building an AI-powered document management system.
-
-Different tasks may require different models.
-
-| Task | Possible Model Requirement |
-|---|---|
-| Document classification | Fast, inexpensive model |
-| Metadata extraction | Model with reliable structured outputs |
-| Document question answering | Model with good reasoning and context support |
-| Image-based document understanding | Vision-capable model |
-| Complex document analysis | More capable reasoning model |
-
-This leads to an important design principle:
-
-**Choose the model based on the task, not just the model's popularity.**
-
-## Key Takeaways
-
-1. Foundation models are broadly trained models that support multiple downstream tasks.
-2. Model families contain related models with different capabilities.
-3. Model parameters are learned values inside the neural network.
-4. API parameters configure how a model generates responses.
-5. Temperature and top-p influence generation variability.
-6. Maximum output tokens limit response length.
-7. Model selection should consider accuracy, cost, latency, context, capabilities, and privacy.
-
-## Interview Questions
-
-**1. What is a foundation model?**
-
-A broadly trained model that can be adapted or used for many different downstream tasks.
-
-**2. What is the difference between model parameters and API parameters?**
-
-Model parameters are learned numerical values inside the neural network. API parameters configure the model's behavior during inference.
-
-**3. What does temperature control?**
-
-The randomness of token selection during generation.
-
-**4. What is top-p sampling?**
-
-A sampling method that considers the smallest set of candidate tokens whose cumulative probability reaches a specified threshold.
-
-**5. What is the difference between temperature and top-p?**
-
-Temperature changes the probability distribution used for sampling, while top-p restricts sampling to a nucleus of high-probability candidates.
-
-**6. How would you choose an LLM for an application?**
-
-Evaluate task accuracy, latency, cost, context window, reliability, capabilities, and privacy requirements.
-
-**7. Should every application use the largest available model?**
-
-No. A smaller, cheaper model may be sufficient for simpler tasks and can improve application efficiency.
+---
 
 # 8. Multimodal AI
 
 ## 8.1 What Is Multimodal AI?
 
-Multimodal AI refers to AI systems that can process or generate information across multiple types of data.
+Multimodal AI refers to AI systems that process or generate information across multiple types of data.
 
-Traditional language models primarily work with text.
+Common modalities include:
 
-Multimodal models can work with combinations of:
+- Text.
+- Images.
+- Audio.
+- Video.
 
-- Text
-- Images
-- Audio
-- Video
-- Other structured or sensor-based data
+A multimodal assistant, for example, can accept an image and a question about it, then generate a text response.
 
-For example, a multimodal assistant may accept an image and a question about that image, then generate a text response.
+## 8.2 Unimodal vs Multimodal
 
-## 8.2 Unimodal vs Multimodal Models
-
-| Unimodal Model | Multimodal Model |
+| Unimodal | Multimodal |
 |---|---|
-| Works primarily with one data modality | Works with multiple modalities |
-| Example: text-only language model | Example: model that accepts text and images |
-| Narrower input/output capabilities | Can support richer interactions |
+| Primarily processes one modality | Processes multiple modalities |
+| Example: Text-only model | Example: Text and image model |
 
 ## 8.3 Image Understanding
 
 Vision-capable models can process images and answer questions about their contents.
-
-Example:
-
-```text
-Input:
-An image of a damaged laptop screen.
-
-Question:
-What damage can you identify?
-```
-
-The model may describe visible cracks, discoloration, or other visual details.
 
 Applications include:
 
@@ -2171,139 +1071,70 @@ Applications include:
 - Visual question answering.
 - Product recognition.
 - Screenshot analysis.
-- Medical image assistance, with appropriate safeguards.
 
-Some models process images through patches or other internal visual representations before combining that information with language representations.
-
-You don't need to understand the internal vision architecture yet.
+Some models process images through patches or other internal visual representations.
 
 ## 8.4 Audio Understanding
 
-Audio-capable AI systems can process spoken language and other audio signals.
+Important audio capabilities include:
 
-Common tasks include:
+**Speech-to-Text (STT):** Converts spoken audio into text.
 
-### Speech-to-Text (STT)
+**Text-to-Speech (TTS):** Converts text into spoken audio.
 
-Converts spoken audio into text.
+**Audio Understanding:** Processes audio to identify speech, sounds and conversational context.
 
-Example:
-
-```text
-Audio:
-"Schedule a meeting for tomorrow."
-
-Output:
-Schedule a meeting for tomorrow.
-```
-
-### Text-to-Speech (TTS)
-
-Converts text into spoken audio.
-
-Example:
-
-```text
-Input:
-"Your meeting is scheduled."
-
-Output:
-A generated spoken response.
-```
-
-### Audio Understanding
-
-Some models can process audio directly to identify information such as speech, sounds, and conversational context.
-
-Applications include:
-
-- Voice assistants.
-- Meeting transcription.
-- Call-center automation.
-- Voice-based customer support.
-- Audio summarization.
+Applications include voice assistants, meeting transcription and customer support automation.
 
 ## 8.5 Video Understanding
 
-Video-capable systems can process visual information across time.
-
-A video contains a sequence of frames, often combined with audio.
+Video-capable systems process visual information across time.
 
 Applications include:
 
 - Video summarization.
 - Activity recognition.
 - Video question answering.
-- Surveillance analysis with appropriate safeguards.
-- Sports analysis.
+- Video analysis.
 
-Some systems sample frames from videos and process them along with audio or text.
+Some systems sample video frames and process them along with audio or text.
 
 ## 8.6 Multimodal Generation
 
-Multimodal AI is not limited to understanding inputs. Some models can also generate outputs in different modalities.
+Some models can generate outputs across different modalities.
 
-Examples:
-
-| Input | Generated Output |
+| Input | Possible Output |
 |---|---|
-| Text prompt | Image |
-| Text prompt | Audio |
-| Text prompt | Video |
-| Audio input | Text response |
+| Text | Image |
+| Text | Audio |
+| Text | Video |
+| Audio | Text |
 | Text and image | Combined response |
 
-The capabilities vary by model and provider.
+Capabilities depend on the model and provider.
 
-## 8.7 How Multimodal Models Work: High-Level View
+## 8.7 Example: Multimodal AI in an Application
 
-Different modalities need different processing methods.
-
-A simplified architecture:
+Consider an invoice processing application.
 
 ```text
-             User Input
-                 |
-       +---------+---------+
-       |         |         |
-       v         v         v
-      Text     Image     Audio
-       |         |         |
-       v         v         v
-   Text Encoder  Vision   Audio
-                Encoder  Encoder
-       |         |         |
-       +---------+---------+
-                 |
-                 v
-          Shared Model
-          Representations
-                 |
-                 v
-          Model Processing
-                 |
-                 v
-           Generated Output
+Scanned Invoice
+      |
+      v
+Vision-Capable Model
+      |
+      v
+Extract Invoice Information
+      |
+      v
+Structured JSON
+      |
+      v
+Application Validation
+      |
+      v
+Save to Database
 ```
-
-This is a conceptual illustration. Real multimodal architectures vary significantly.
-
-Some models use separate encoders, while others use unified architectures or specialized token representations.
-
-## 8.8 Multimodal AI in Real Applications
-
-Consider an intelligent document management system.
-
-A user uploads a scanned invoice.
-
-A multimodal AI workflow could:
-
-1. Accept the uploaded document image.
-2. Understand the visual content.
-3. Extract invoice details.
-4. Return structured information.
-5. Validate extracted fields.
-6. Save the information to the application database.
 
 Example output:
 
@@ -2316,11 +1147,9 @@ Example output:
 }
 ```
 
-The values are illustrative.
+The values are illustrative. The application must validate extracted information before using it.
 
-The application should validate extracted data before storing or using it.
-
-## 8.9 Multimodal AI vs Traditional OCR
+## 8.8 OCR vs Multimodal AI
 
 OCR (Optical Character Recognition) extracts text from images and scanned documents.
 
@@ -2328,251 +1157,135 @@ Multimodal AI can go further by interpreting visual context and answering questi
 
 | OCR | Multimodal AI |
 |---|---|
-| Extracts text from images | Understands and reasons about visual content |
+| Extracts text | Interprets broader visual content |
 | Focuses on text recognition | Can process text and non-text visual information |
-| Often produces extracted text | Can answer questions and generate structured outputs |
+| Produces extracted text | Can answer questions and generate structured outputs |
 
-OCR remains useful when reliable text extraction is the primary requirement.
+OCR remains useful when text extraction is the main requirement.
 
-Multimodal models can be useful when the task requires broader visual understanding.
+**Applied AI relevance:** Understand which model capabilities your application needs. Not every task requires a multimodal model.
 
-## 8.10 What Should an Applied AI Engineer Know?
+---
 
-You should understand:
+# 9. Open-Weight vs Closed-Source Models
 
-- What multimodal AI means.
-- The difference between text, image, audio, and video capabilities.
-- What vision-capable models can do.
-- The difference between speech-to-text and text-to-speech.
-- How multimodal inputs can be integrated into applications.
-- When traditional OCR or specialized tools may be more appropriate.
-- Why outputs still need validation.
+## 9.1 What Are Open-Weight Models?
 
-## Key Takeaways
+Open-weight models make trained model weights available for download, subject to their licenses.
 
-1. Multimodal AI processes multiple types of information.
-2. Modern AI systems can understand text, images, audio, and video.
-3. Speech-to-text converts audio into text.
-4. Text-to-speech converts text into audio.
-5. Vision-capable models can interpret image content.
-6. Multimodal AI can support document processing, voice assistants, and video analysis.
-7. The correct modality and model depend on the application requirement.
+Examples include model families such as:
 
-## Interview Questions
+- Llama.
+- Qwen.
+- Mistral.
+- Gemma.
 
-**1. What is multimodal AI?**
+However, downloadable weights do not necessarily mean that training data, training code and all development details are publicly available.
 
-AI that can process or generate information across multiple modalities, such as text, images, audio, and video.
+The terms "open-source" and "open-weight" should not be treated as interchangeable.
 
-**2. What is the difference between unimodal and multimodal AI?**
-
-Unimodal systems primarily work with one modality, while multimodal systems work with multiple modalities.
-
-**3. What is the difference between STT and TTS?**
-
-STT converts speech into text, while TTS converts text into spoken audio.
-
-**4. What is the difference between OCR and multimodal AI?**
-
-OCR primarily extracts text from images. Multimodal AI can also interpret broader visual context and answer questions about image content.
-
-**5. Give an example of multimodal AI in a business application.**
-
-An invoice processing system that accepts scanned documents, extracts information, validates it, and stores structured data.
-
-**6. Does every LLM support image and audio inputs?**
-
-No. Multimodal capabilities depend on the specific model and API.
-
-# 9. Open-Source vs Closed-Source Models
-
-## 9.1 What Are Open-Source Models?
-
-Open-source AI models are models whose developers make their model artifacts and related resources available under a license that permits certain forms of access, use, modification, or redistribution.
-
-However, the term "open-source model" is often used loosely.
-
-Some models provide downloadable weights but do not release all training data, training code, or other development details.
-
-Therefore, it is important to examine the actual license and what the provider makes available.
-
-Examples of model families with publicly available weights include:
-
-- Llama
-- Qwen
-- Mistral
-- Gemma
-
-Availability and usage rights vary by model and license.
+Always inspect the license of the specific model version.
 
 ## 9.2 What Are Closed-Source Models?
 
-Closed-source models are models where the provider does not publicly release the model's complete internal artifacts, such as its weights.
+Closed-source models generally do not publicly release their complete model weights.
 
-Developers typically access them through hosted APIs or managed platforms.
+Developers commonly access them through hosted APIs or managed platforms.
 
 Examples include:
 
-- OpenAI GPT models
-- Anthropic Claude models
-- Google Gemini models
+- OpenAI GPT models.
+- Anthropic Claude models.
+- Google Gemini models.
 
-The exact access and deployment options depend on the provider.
+Access options depend on the provider.
 
-## 9.3 Open-Source vs Closed-Source
+## 9.3 Open-Weight vs Closed-Source
 
-| Factor | Open-Weight Models | Closed-Source Models |
+| Factor | Open-Weight | Closed-Source |
 |---|---|---|
-| Model weights | Often downloadable | Generally not publicly available |
+| Model weights | Often downloadable | Generally not public |
 | Hosting | Can often self-host | Usually provider-hosted |
-| Customization | Greater control over deployment and modification | Depends on provider features |
-| Infrastructure | May require your own infrastructure | Provider manages model infrastructure |
-| Maintenance | Your responsibility when self-hosting | Primarily handled by provider |
-| Pricing | Infrastructure and operational costs | API usage or subscription costs |
-| Privacy | Can offer greater deployment control | Depends on provider's data policies |
-| Model updates | You manage versions when self-hosting | Provider manages model releases |
+| Customization | More deployment control | Depends on provider |
+| Infrastructure | May require your own | Managed by provider |
+| Maintenance | Your responsibility when self-hosting | Primarily provider-managed |
+| Cost | Infrastructure and operations | API usage or subscription |
+| Privacy | More deployment control is possible | Depends on provider policies |
 
-Open-weight does not automatically mean unrestricted or fully open-source.
+Neither option is universally better.
 
-## 9.4 Examples of Open-Weight Models
+## 9.4 What Is Self-Hosting?
 
-### Llama
+Self-hosting means deploying and running a model on infrastructure you control.
 
-Developed by Meta.
+Examples of hosting environments:
 
-A family of models available with downloadable weights under model-specific licenses.
+- Local computer.
+- GPU server.
+- Private cloud.
+- Organization's data center.
 
-### Qwen
+Common tools include:
 
-Developed by Alibaba.
+- Ollama.
+- vLLM.
+- Hugging Face Transformers.
+- Hugging Face Text Generation Inference.
 
-Provides a range of models, including language and multimodal models, with different capabilities and licensing terms.
+Self-hosting gives more control but introduces responsibilities such as:
 
-### Mistral
+- GPU provisioning.
+- Memory management.
+- Scaling.
+- Monitoring.
+- Security.
+- Model updates.
+- Availability.
 
-Developed by Mistral AI.
+## 9.5 Hosted AI Model APIs
 
-Offers multiple model families and deployment options, including models with publicly available weights.
-
-### Gemma
-
-Developed by Google.
-
-A family of models with publicly available weights and model-specific terms.
-
-Always check the license for the exact model version you intend to use.
-
-## 9.5 Examples of Closed-Source Models
-
-### GPT
-
-Developed by OpenAI.
-
-Provides models through hosted APIs and supported product interfaces.
-
-### Claude
-
-Developed by Anthropic.
-
-Provides language models through hosted APIs and supported platforms.
-
-### Gemini
-
-Developed by Google.
-
-Provides models through Google's AI platforms and APIs.
-
-These providers manage the underlying model infrastructure for their hosted API offerings.
-
-## 9.6 What Is Self-Hosting?
-
-Self-hosting means deploying and running a model on infrastructure that you control.
-
-This could be:
-
-- A local computer
-- A dedicated GPU server
-- A private cloud environment
-- An organization's own data center
-
-Common tools and platforms include:
-
-- Ollama
-- vLLM
-- Hugging Face Transformers
-- Hugging Face Text Generation Inference
-
-Self-hosting gives developers more control over infrastructure and deployment, but it introduces operational responsibilities.
-
-These include:
-
-- GPU provisioning
-- Memory management
-- Scaling
-- Model serving
-- Monitoring
-- Security
-- Updates
-- Availability
-
-## 9.7 What Is an AI Model API?
-
-An AI model API allows an application to communicate with a model through a programmatic interface.
-
-Example:
+A hosted model API allows an application to communicate with a model without managing its underlying model infrastructure.
 
 ```text
-Your Application
-       |
-       v
-   AI API Request
-       |
-       v
-  Model Provider
-       |
-       v
-  Model Inference
-       |
-       v
-   API Response
-       |
-       v
-Your Application
+Application
+    |
+    v
+AI API Request
+    |
+    v
+Model Provider
+    |
+    v
+Model Inference
+    |
+    v
+API Response
+    |
+    v
+Application
 ```
 
-Instead of deploying and managing model infrastructure, the application sends requests to the provider.
+This is one of the most common approaches for integrating AI into software products.
 
-This is one of the most common ways to integrate AI into software products.
+## 9.6 How Should You Choose?
 
-## 9.8 How Should You Choose?
-
-There is no universally better option.
-
-Choose based on the application requirements.
-
-### Choose a Hosted Closed-Source Model When:
+**Choose a hosted model API when:**
 
 - You want to integrate AI quickly.
-- You don't want to manage GPU infrastructure.
-- You need a provider-managed model.
-- The available model capabilities meet your requirements.
-- The provider's pricing and data policies are acceptable.
+- You do not want to manage GPU infrastructure.
+- The provider's model capabilities meet your needs.
+- Pricing and data policies are acceptable.
 
-### Consider an Open-Weight Model When:
+**Consider an open-weight model when:**
 
-- You need greater control over deployment.
+- You need more control over deployment.
 - You have specific data residency requirements.
-- You want to experiment with model customization.
-- You have suitable infrastructure.
-- You want to evaluate self-hosting economics.
+- You want to customize or self-host a model.
+- You have suitable infrastructure and operational resources.
 
-## 9.9 What About Hybrid AI Architecture?
+## 9.7 Hybrid AI Architecture
 
-An application does not have to use only one type of model.
-
-It can use different models for different tasks.
-
-Example:
+An application can use different models for different tasks.
 
 ```text
              AI Application
@@ -2580,138 +1293,150 @@ Example:
          +---------+---------+
          |                   |
          v                   v
-   Simple Tasks         Complex Tasks
+    Simple Tasks        Complex Tasks
          |                   |
          v                   v
-   Self-hosted Model    Hosted Model API
+  Self-hosted Model    Hosted Model API
          |                   |
          +---------+---------+
                    |
                    v
-             Application
+              Application
 ```
 
 For example:
 
-- Use a smaller self-hosted model for simple classification.
-- Use a hosted model for complex reasoning.
-- Use a vision-capable model for image understanding.
+- A smaller model for classification.
+- A hosted model for complex reasoning.
+- A vision-capable model for image understanding.
 
-The architecture should be based on evaluation, reliability, latency, cost, and privacy requirements.
+Model selection should be based on evaluation, reliability, latency, cost and privacy requirements.
 
-## 9.10 Important Considerations for Production
+## 9.8 Production Considerations
 
 Before selecting a model, evaluate:
 
-**Licensing:** Are commercial use, redistribution, and modification permitted?
+- **Licensing:** Are commercial use and redistribution permitted?
+- **Privacy:** How does the provider handle submitted data?
+- **Security:** How will sensitive information be protected?
+- **Cost:** What are the API or infrastructure expenses?
+- **Performance:** Does the model meet latency and throughput requirements?
+- **Reliability:** Does it perform consistently on your tasks?
+- **Portability:** Can the application switch models without major changes?
 
-**Privacy:** What happens to the prompts and data sent to the provider?
+---
 
-**Security:** How is sensitive information protected?
+# Module 1: Key Takeaways
 
-**Cost:** What are the API or infrastructure costs?
+1. AI is the broader field; ML and Deep Learning are subsets of AI.
+2. Generative AI creates content, and modern LLMs predominantly use Deep Learning.
+3. LLMs generate text by predicting tokens based on context.
+4. Transformers use self-attention to understand relationships between tokens.
+5. Embeddings represent tokens numerically, while positional information represents their order.
+6. Tokenization converts text into token IDs.
+7. Context windows limit the information available during a model request.
+8. Training adjusts model parameters; inference uses an already-trained model.
+9. Fine-tuning, RAG and memory solve different problems.
+10. Hallucinations mean generated information can be incorrect despite sounding convincing.
+11. Prompting, retrieval, tool calling and validation help build more reliable applications.
+12. Foundation models support multiple tasks and can be configured for different use cases.
+13. Multimodal AI processes information such as text, images, audio and video.
+14. Open-weight and closed-source models offer different deployment and operational trade-offs.
 
-**Performance:** Does the model meet latency and throughput requirements?
+# Module 1: Interview Revision
 
-**Reliability:** Does it consistently perform well on your actual tasks?
+**1. What is the difference between AI, ML and Deep Learning?**
 
-**Portability:** Can the application switch models without major changes?
+AI is the broader field of intelligent systems. ML is a subset of AI that learns patterns from data. Deep Learning is a subset of ML that uses multi-layer neural networks.
 
-A useful engineering practice is to keep your application code independent of a single model provider where practical.
+**2. What is an LLM?**
 
-## Key Takeaways
+A Deep Learning model trained on large amounts of data to process and generate language.
 
-1. Open-weight models provide downloadable model weights, subject to their licenses.
-2. Closed-source models are generally accessed through provider-managed services.
-3. Open-weight does not necessarily mean fully open-source.
-4. Self-hosting gives more infrastructure control but adds operational complexity.
-5. Hosted APIs simplify model integration and infrastructure management.
-6. Model selection should consider cost, privacy, licensing, latency, and quality.
-7. Applications can combine hosted and self-hosted models.
+**3. How does an LLM generate text?**
 
-## Interview Questions
+Most autoregressive LLMs repeatedly predict and generate the next token based on preceding context.
 
-**1. What is the difference between open-source and closed-source LLMs?**
+**4. What is a Transformer?**
 
-Open-source or open-weight models provide varying levels of access to model artifacts, while closed-source models generally expose capabilities through provider-managed services.
+A neural network architecture that uses attention mechanisms to process sequences and capture relationships between tokens.
 
-**2. What is self-hosting?**
+**5. What is self-attention?**
 
-Deploying and running a model on infrastructure controlled by the organization or developer.
+A mechanism that lets each token evaluate the relevance of other tokens and combine their information.
 
-**3. What are the advantages of self-hosting?**
+**6. What are Query, Key and Value?**
 
-Greater deployment control, potential data residency benefits, and flexibility over infrastructure and model configuration.
+Learned representations used by attention to determine relevance and combine information.
 
-**4. What are the disadvantages of self-hosting?**
+**7. What is tokenization?**
 
-Infrastructure costs, GPU requirements, scaling complexity, maintenance, monitoring, and operational responsibilities.
+Converting text into tokens and their corresponding numerical IDs.
 
-**5. Why might a company choose a hosted AI API?**
+**8. What is a context window?**
 
-It reduces infrastructure management and provides access to provider-managed models.
+The maximum token capacity available to a model for processing a request and generating output.
 
-**6. Can an application use multiple AI models?**
+**9. What is the difference between training and inference?**
 
-Yes. Different models can handle different tasks based on cost, performance, and capability requirements.
+Training adjusts model parameters using data. Inference uses the trained model to generate predictions.
 
-**7. What should you check before using an open-weight model commercially?**
+**10. What is fine-tuning?**
 
-Its license, commercial usage permissions, redistribution conditions, and other applicable restrictions.
+Further training an existing model on specialized data to adapt its behavior.
+
+**11. What is an LLM hallucination?**
+
+An incorrect or unsupported response generated by a model and presented as if it were true.
+
+**12. How can developers reduce hallucinations?**
+
+Use relevant context, RAG, tool calling, validation and human review where appropriate.
+
+**13. What is the difference between model parameters and API parameters?**
+
+Model parameters are learned values inside the neural network. API parameters configure generation behavior during inference.
+
+**14. What is multimodal AI?**
+
+AI that can process or generate information across modalities such as text, images, audio and video.
+
+**15. What is the difference between open-weight and closed-source models?**
+
+Open-weight models make weights available under their licenses. Closed-source models generally expose access through provider-managed services.
+
+---
 
 # Module 1: References
 
-These resources cover the concepts discussed throughout AI & LLM Fundamentals.
-
-## Official Documentation and Research
-
-### AI and Machine Learning Fundamentals
+## AI and Machine Learning
 
 - [Google Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course)
 - [Deep Learning Book](https://www.deeplearningbook.org/)
 
-### Transformers and LLM Fundamentals
+## Transformers and LLMs
 
-- [Attention Is All You Need — Original Transformer Paper](https://arxiv.org/abs/1706.03762)
+- [Attention Is All You Need — Original Research Paper](https://arxiv.org/abs/1706.03762)
 - [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
 - [Hugging Face NLP Course](https://huggingface.co/learn/nlp-course/)
-- [The GPT-2 Paper](https://openai.com/research/better-language-models)
 
-### Tokenization and Context
+## Tokenization
 
 - [OpenAI Tokenizer](https://platform.openai.com/tokenizer)
-- [Hugging Face Tokenizers Documentation](https://huggingface.co/docs/tokenizers/index)
+- [Hugging Face Tokenizers](https://huggingface.co/docs/tokenizers/index)
 
-### Training and Fine-Tuning
+## Training and Fine-Tuning
 
 - [Hugging Face Transformers Documentation](https://huggingface.co/docs/transformers/index)
 - [InstructGPT Research Paper](https://arxiv.org/abs/2203.02155)
 - [Direct Preference Optimization Paper](https://arxiv.org/abs/2305.18290)
 
-### Multimodal AI
+## Multimodal AI and Models
 
 - [Hugging Face Multimodal Documentation](https://huggingface.co/docs/transformers/tasks/image_text_to_text)
-
-### Open-Weight Models
-
 - [Meta Llama](https://www.llama.com/)
 - [Qwen](https://qwen.ai/)
 - [Mistral AI](https://mistral.ai/)
 - [Google Gemma](https://ai.google.dev/gemma)
 
-## Learning Guidance
-
-You do not need to read every research paper in detail.
-
-Prioritize:
-
-1. Understanding the concepts.
-2. Knowing how they affect real AI applications.
-3. Understanding common limitations and trade-offs.
-4. Being able to explain the concepts during technical interviews.
-
-Use the official documentation when you begin integrating specific models and APIs.
-
----
-
-**Module 1 completed: AI & LLM Fundamentals.**
+**Learning guidance:** You do not need to read every research paper in detail. Prioritize understanding the concepts, their practical applications and the trade-offs involved.
