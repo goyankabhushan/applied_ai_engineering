@@ -1,5 +1,4 @@
 # 01. AI & LLM Fundamentals
-
 ## 1.1 Artificial Intelligence (AI)
 
 Artificial Intelligence (AI) is a field of computer science focused on building systems capable of performing tasks that typically require human intelligence.
@@ -987,7 +986,7 @@ Encoder-only models primarily build contextual representations of input, while d
 
 **8. What is causal attention?**
 
-A form of attention that prevents a token from accessing future tokens during autoregressive generation.
+A form of attention that prevents a token from accessing future tokens during autoregressively generation.
 
 **9. What happens inside a Transformer when an LLM receives a prompt?**
 
@@ -2167,12 +2166,12 @@ The model may describe visible cracks, discoloration, or other visual details.
 
 Applications include:
 
-- Document understanding
-- Image classification
-- Visual question answering
-- Product recognition
-- Screenshot analysis
-- Medical image assistance, with appropriate safeguards
+- Document understanding.
+- Image classification.
+- Visual question answering.
+- Product recognition.
+- Screenshot analysis.
+- Medical image assistance, with appropriate safeguards.
 
 Some models process images through patches or other internal visual representations before combining that information with language representations.
 
@@ -2218,11 +2217,11 @@ Some models can process audio directly to identify information such as speech, s
 
 Applications include:
 
-- Voice assistants
-- Meeting transcription
-- Call-center automation
-- Voice-based customer support
-- Audio summarization
+- Voice assistants.
+- Meeting transcription.
+- Call-center automation.
+- Voice-based customer support.
+- Audio summarization.
 
 ## 8.5 Video Understanding
 
@@ -2232,11 +2231,11 @@ A video contains a sequence of frames, often combined with audio.
 
 Applications include:
 
-- Video summarization
-- Activity recognition
-- Video question answering
-- Surveillance analysis with appropriate safeguards
-- Sports analysis
+- Video summarization.
+- Activity recognition.
+- Video question answering.
+- Surveillance analysis with appropriate safeguards.
+- Sports analysis.
 
 Some systems sample frames from videos and process them along with audio or text.
 
